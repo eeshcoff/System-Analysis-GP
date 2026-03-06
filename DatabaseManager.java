@@ -303,7 +303,7 @@ public class DatabaseManager {
         return "No goal found for type: " + goal_type;
     }
 
-    //get workout - returns a string inpute is date
+    //get workout - returns a string input is date
 
     public String getWorkout(String workout_date)
     {
@@ -331,7 +331,7 @@ public class DatabaseManager {
         return "No workout found for " + workout_date;
     }
 
-    //get meal - returns a string inpute is date
+    //get meal - returns a string input is date
 
     public String getMeal(String meal_date)
     {
@@ -361,6 +361,5 @@ public class DatabaseManager {
 }
 
 // Functions Still Needed:
-// - Retrieve existing goals, meals, workouts Ryan 3 / 5
 // - Send data to front end for display Abdallah  3 / 5
 // - Calculate progress towards goals based on meals and workouts 3 / 7
