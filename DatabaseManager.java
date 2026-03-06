@@ -3,6 +3,7 @@ package SDEV265.Team2.FitnessTracker;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -274,9 +275,92 @@ public class DatabaseManager {
             }
     }
 
+    //get Goal - returns a string input is date
+
+    public String getGoal(String goal_type)
+    {
+        String sql = "SELECT * FROM goals WHERE goal_type = ?";
+
+        try (Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, goal_type);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return "Goal: " +
+                    rs.getString("goal_type") + " = " +
+                    rs.getDouble("target_value") + " " +
+                    rs.getString("unit") +
+                    " (Deadline: " + rs.getString("deadline") + ")";
+            }
+
+        } catch (SQLException e)
+            {
+                System.err.println("Retrieval Error: " + e.getMessage());
+            }
+
+        return "No goal found for type: " + goal_type;
+    }
+
+    //get workout - returns a string inpute is date
+
+    public String getWorkout(String workout_date)
+    {
+        String sql = "SELECT * FROM workouts WHERE workout_date = ?";
+
+        try (Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, workout_date);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return "Workout: " +
+                    rs.getString("workout_type") + ", " +
+                    rs.getInt("duration_minutes") + " mins, " +
+                    "Intensity: " + rs.getString("intensity_level") + ", " +
+                    "Notes: " + rs.getString("notes");
+            }
+
+        } catch (SQLException e)
+            {
+                System.err.println("Retrieval Error: " + e.getMessage());
+            }
+
+        return "No workout found for " + workout_date;
+    }
+
+    //get meal - returns a string inpute is date
+
+    public String getMeal(String meal_date)
+    {
+        String sql = "SELECT * FROM meals WHERE meal_date = ?";
+
+        try (Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, meal_date);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return "Meal: " +
+                    rs.getString("meal_type") + ", " +
+                    rs.getInt("calories") + " calories, " +
+                    "Notes: " + rs.getString("notes");
+            }
+
+        } catch (SQLException e)
+            {
+                System.err.println("Retrieval Error: " + e.getMessage());
+            }
+
+        return "No meal found for " + meal_date;
+    }
+
 }
 
 // Functions Still Needed:
-// - Retrieve existing goals, meals, workouts
-// - Send data to front end for display
-// - Calculate progress towards goals based on meals and workouts
+// - Retrieve existing goals, meals, workouts Ryan 3 / 5
+// - Send data to front end for display Abdallah  3 / 5
+// - Calculate progress towards goals based on meals and workouts 3 / 7
