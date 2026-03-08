@@ -7,3 +7,5 @@ unzip the folder and launch the file labeled FitnessTracker-1.0-jar-with-depenci
 which is located inside of the FitnessTracker-1/target folder.
 The data which gets tracked is workouts, sleep, water, and calories. You can
 do this by both logging them and also setting goals for what you want to achieve.
+
+Team - Abdallah, Kiley, Ryan, Bithiah, Emily
